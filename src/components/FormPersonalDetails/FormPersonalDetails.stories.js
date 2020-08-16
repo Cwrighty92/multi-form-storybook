@@ -10,6 +10,6 @@ export default {
   },
 };
 
-const Template = () => <FormPersonalDetails handleChange={() => {}} />;
+const Template = () => <FormPersonalDetails onChange={() => {}} values={{}} />;
 
 export const Primary = Template.bind({});

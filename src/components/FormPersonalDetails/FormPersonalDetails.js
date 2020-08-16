@@ -1,42 +1,40 @@
 import React from "react";
 
-export const FormPersonalDetails = ({
-  nextStep,
-  previousStep,
-  city,
-  bio,
-  occupation,
-  handleChange,
-}) => {
-  const continueStep = (e) => {
-    e.preventDefault();
-    nextStep();
-  };
-  const backpreviousStep = (e) => {
-    e.preventDefault();
-    previousStep();
-  };
-
+export const FormPersonalDetails = ({ moveStep, onChange, values }) => {
+  const { city, occupation, bio } = values;
   return (
-    <form onSubmit={continueStep}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        moveStep("forward");
+      }}
+    >
       <label htmlFor="city">Enter Your City </label>
-      <input id="city" value={city} onChange={handleChange("city")} />
+      <input id="city" name="city" value={city} onChange={onChange} />
 
       <br />
       <label htmlFor="occupation">Enter Your occupation</label>
       <input
         id="occupation"
+        name="occupation"
         value={occupation}
-        onChange={handleChange("occupation")}
+        onChange={onChange}
       />
       <br />
 
       <label htmlFor="bio">Enter Your bio </label>
-      <input id="bio" value={bio} onChange={handleChange("bio")} />
+      <input id="bio" name="bio" value={bio} onChange={onChange} />
       <br />
 
       <br />
-      <button onClick={backpreviousStep}>Back</button>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          moveStep("back");
+        }}
+      >
+        Back
+      </button>
       <button>Continue</button>
     </form>
   );
